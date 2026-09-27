@@ -7,7 +7,8 @@ const app = express();
 const socket = require("socket.io");
 require("dotenv").config();
 
-app.use(cors());
+const clientOrigin = process.env.CLIENT_ORIGIN || "http://localhost:3000";
+app.use(cors({ origin: clientOrigin, credentials: true }));
 app.use(express.json());
 
 mongoose
@@ -29,12 +30,13 @@ app.get("/ping", (_req, res) => {
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
 
-const server = app.listen(process.env.PORT, () =>
-  console.log(`Server started on ${process.env.PORT}`)
+const port = process.env.PORT || 5000;
+const server = app.listen(port, "0.0.0.0", () =>
+  console.log(`Server started on ${port}`)
 );
 const io = socket(server, {
   cors: {
-    origin: "http://localhost:3000",
+    origin: clientOrigin,
     credentials: true,
   },
 });
