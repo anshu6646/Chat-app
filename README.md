@@ -1,68 +1,76 @@
-# Snappy - Chat Application 
-Snappy is chat application build with the power of MERN Stack. You can find the tutorial 
+# Snappy - Real-Time Chat Application
 
+A real-time chat application built with the MERN stack and Socket.IO. Users can register, choose an avatar, and chat instantly with other users, with conversations saved in MongoDB.
 
-![login page](./images/snappy_login.png)
+🔗 **Live Demo:** [chat-app-4h6f.vercel.app](chat-app-4h6f.vercel.app)
 
-![home page](./images/snappy.png)
+> Hosted on a free tier, so the first load may take up to a minute.
 
-## Installation Guide
+## Screenshots
+
+| Login | Chat |
+|---|---|
+| ![Login](./images/snappy_login.png) | ![Chat](./images/snappy.png) |
+
+## Features
+
+- User registration and login
+- Avatar selection
+- Contact list of registered users
+- Real-time messaging using WebSockets (Socket.IO)
+- Message history stored in MongoDB, so chats reload after logging in again
+- Docker Compose support for running the frontend and backend together
+
+## Tech Stack
+
+- **Frontend:** React.js
+- **Backend:** Node.js, Express.js, Socket.IO
+- **Database:** MongoDB
+- **DevOps:** Docker, Docker Compose
+
+## Run Locally
 
 ### Requirements
-- [Nodejs](https://nodejs.org/en/download)
-- [Mongodb](https://www.mongodb.com/docs/manual/administration/install-community/)
+- [Node.js](https://nodejs.org/en/download)
+- [MongoDB](https://www.mongodb.com/docs/manual/administration/install-community/), running locally
 
-Both should be installed and make sure mongodb is running.
-### Installation
+### Without Docker
 
-#### First Method
 ```shell
-git clone 
-cd chat-app-react-nodejs
-```
-Now rename env files from .env.example to .env
-```shell
-cd public
-mv .env.example .env
-cd ..
-cd server
-mv .env.example .env
-cd ..
+git clone https://github.com/anshu6646/Chat-app.git
+cd Chat-app
 ```
 
-Now install the dependencies
+Rename the env files:
+
+```shell
+cd public && mv .env.example .env && cd ..
+cd server && mv .env.example .env && cd ..
+```
+
+Start the backend:
+
 ```shell
 cd server
 yarn
-cd ..
+yarn start
+```
+
+In a second terminal, start the frontend:
+
+```shell
 cd public
 yarn
-```
-We are almost done, Now just start the development server.
-
-For Frontend.
-```shell
-cd public
 yarn start
 ```
-For Backend.
 
-Open another terminal in folder, Also make sure mongodb is running in background.
-```shell
-cd server
-yarn start
-```
-Done! Now open localhost:3000 in your browser.
+Open `http://localhost:3000` in your browser.
 
-#### Second Method
-- This method requires docker and docker-compose to be installed in your system.
-- Make sure you are in the root of your project and run the following command.
+### With Docker
 
 ```shell
 docker compose build --no-cache
-```
-after the build is complete run the containers using the following command
-```shell
 docker compose up
 ```
-now open localhost:3000 in your browser.
+
+Open `http://localhost:3000` in your browser.
